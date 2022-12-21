@@ -2,6 +2,7 @@ import { resolve } from 'node:path';
 import process from 'node:process';
 import { dirList, dirOpen, dirUp } from './directories.js';
 import { fileAdd, fileCat, fileCopy, fileDelete, fileMove, fileRename } from './files.js';
+import { fileHash } from './hash.js';
 import { currentLocation, goodbye, greeting, root } from './messages.js';
 import { osInfo } from './os.js';
 
@@ -47,6 +48,9 @@ const inputHandler = (chunk: Buffer) => {
       break;
     case 'os':
       osInfo(param1);
+      break;
+    case 'hash':
+      fileHash(resolve(location, param1));
       break;
     default:
       process.stdout.write(command);
