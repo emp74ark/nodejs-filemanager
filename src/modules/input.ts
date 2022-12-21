@@ -3,6 +3,7 @@ import process from 'node:process';
 import { dirList, dirOpen, dirUp } from './directories.js';
 import { fileAdd, fileCat, fileCopy, fileDelete, fileMove, fileRename } from './files.js';
 import { currentLocation, goodbye, greeting, root } from './messages.js';
+import { osInfo } from './os.js';
 
 const user = process.argv[4].slice(7);
 
@@ -43,6 +44,9 @@ const inputHandler = (chunk: Buffer) => {
       break;
     case 'rm':
       fileDelete(resolve(location, param1));
+      break;
+    case 'os':
+      osInfo(param1);
       break;
     default:
       process.stdout.write(command);
