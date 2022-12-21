@@ -1,5 +1,6 @@
 import { resolve } from 'node:path';
 import process from 'node:process';
+import { compress, decompress } from './compression.js';
 import { dirList, dirOpen, dirUp } from './directories.js';
 import { fileAdd, fileCat, fileCopy, fileDelete, fileMove, fileRename } from './files.js';
 import { fileHash } from './hash.js';
@@ -51,6 +52,12 @@ const inputHandler = (chunk: Buffer) => {
       break;
     case 'hash':
       fileHash(resolve(location, param1));
+      break;
+    case 'compress':
+      compress(resolve(location, param1), resolve(location, param2));
+      break;
+    case 'decompress':
+      decompress(resolve(location, param1), resolve(location, param2));
       break;
     default:
       process.stdout.write(command);
