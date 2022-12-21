@@ -1,6 +1,8 @@
+import { resolve } from 'node:path';
 import process from 'node:process';
-import { goodbye, greeting, root, currentLocation } from './messages.js';
-import { dirUp, dirOpen, dirList } from './directories.js';
+import { dirList, dirOpen, dirUp } from './directories.js';
+import { fileAdd, fileCat, fileCopy, fileDelete, fileMove, fileRename } from './files.js';
+import { currentLocation, goodbye, greeting, root } from './messages.js';
 
 const user = process.argv[4].slice(7);
 
@@ -23,6 +25,24 @@ const inputHandler = (chunk: Buffer) => {
       break;
     case 'ls':
       dirList(location);
+      break;
+    case 'cat':
+      fileCat(resolve(location, param1));
+      break;
+    case 'add':
+      fileAdd(resolve(location, param1));
+      break;
+    case 'rn':
+      fileRename(location, param1, param2);
+      break;
+    case 'cp':
+      fileCopy(location, param1, param2);
+      break;
+    case 'mv':
+      fileMove(location, param1, param2);
+      break;
+    case 'rm':
+      fileDelete(resolve(location, param1));
       break;
     default:
       process.stdout.write(command);
