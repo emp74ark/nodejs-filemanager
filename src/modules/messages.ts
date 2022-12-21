@@ -12,10 +12,10 @@ export const goodbye = (user: string) => chalk.bgBlue('\n' + `Thank you for usin
 export const invalid = chalk.bgRed('Invalid input');
 
 export const currentLocation = (location: string) => {
-  console.log(chalk.yellow(`You are currently in ${location}`))
-}
+  console.log(chalk.yellow(`You are currently in ${location}`));
+};
 
 export const greeting = (user: string) => {
   console.log(chalk.bgMagenta(`Welcome to the File Manager, ${user}!`));
-  currentLocation(root)
+  currentLocation(root);
 };
